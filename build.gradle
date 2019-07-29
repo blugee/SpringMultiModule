@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+group 'com.example'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    flatDir { dirs 'libs' }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    compile 'org.springframework:spring-webmvc:4.3.18.RELEASE'
+    //compile files("libs/jarA.jar")
+    compile files(fileTree(dir: 'libs', includes: ['*.jar']))
+    runtime 'javax.servlet:jstl:1.1.2'
+}
